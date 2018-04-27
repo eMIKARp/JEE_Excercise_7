@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>10_Filters</display-name>
+  
+  <!-- Strona główna -->
+  	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Konfiguracja servletów -->
+  
+  <servlet> 
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>pl.javastart.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet> 
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<servlet-class>pl.javastart.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  
+   <!-- Konfiguracja filtrów -->
+   
+   <filter>
+   	<filter-name>IpRequestFilter</filter-name>
+   	<filter-class>pl.javastart.filter.IpRequestFilter</filter-class>
+   	<init-param>
+   		<param-name>ipPattern</param-name>
+   		<param-value>127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}</param-value>
+   	</init-param>
+   </filter>
+   <filter-mapping>
+   	<filter-name>IpRequestFilter</filter-name>
+   	<url-pattern>/*</url-pattern>
+   </filter-mapping>
+   
+   <filter>
+   	<filter-name>AuthenticationFilter</filter-name>
+   	<filter-class>pl.javastart.filter.AuthenticationFilter</filter-class>
+   </filter>
+   <filter-mapping>
+   	<filter-name>AuthenticationFilter</filter-name>
+   	<url-pattern>/admin.jsp</url-pattern>
+   </filter-mapping>
+   
+
+</web-app>
